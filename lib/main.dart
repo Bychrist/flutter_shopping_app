@@ -19,12 +19,17 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(
           seedColor: const Color.fromRGBO(254, 206, 1, 1),
         ),
+        bottomNavigationBarTheme: const BottomNavigationBarThemeData(
+          selectedIconTheme: IconThemeData(
+            color: Color.fromRGBO(254, 206, 1, 1),
+          ),
+        ),
         inputDecorationTheme: const InputDecorationTheme(
           hintStyle: TextStyle(
             fontWeight: FontWeight.bold,
             fontSize: 16,
           ),
-          prefixIconColor: Color.fromRGBO(119, 119, 119, 1),
+          prefixIconColor: Color.fromRGBO(254, 206, 1, 1),
         ),
         appBarTheme: const AppBarTheme(
           titleTextStyle: TextStyle(color: Colors.black, fontSize: 20),
@@ -40,9 +45,7 @@ class MyApp extends StatelessWidget {
             )),
       ),
       title: 'Shopping App',
-      home: ProductDetailPage(
-        product: products[0],
-      ),
+      home: const Homepage(),
     );
   }
 }
