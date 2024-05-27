@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:shopping_app/cart_page.dart';
-import 'package:shopping_app/global_variables.dart';
-import 'package:shopping_app/product_card.dart';
-import 'package:shopping_app/product_detail_page.dart';
 import 'package:shopping_app/product_list.dart';
 
 class Homepage extends StatefulWidget {

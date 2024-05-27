@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:shopping_app/cart_provider.dart';
 
 class ProductDetailPage extends StatefulWidget {
   final Map<String, Object> product;
@@ -10,6 +12,43 @@ class ProductDetailPage extends StatefulWidget {
 
 class _ProductDetailPageState extends State<ProductDetailPage> {
   int selectedSize = 0;
+  void onTap() {
+    if (selectedSize != 0) {
+      {
+        Provider.of<CartProvider>(context, listen: false).addProduct({
+          'id': widget.product['id '],
+          'title': widget.product['title'],
+          'price': widget.product['price'],
+          'imageUrl': widget.product['imageUrl'],
+          'company': widget.product['company'],
+          'size': widget.product['size'],
+        });
+      }
+
+      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+          backgroundColor: Colors.white,
+          content: Text(
+            'Product added successfully!',
+            textAlign: TextAlign.center,
+            style: TextStyle(
+              color: Colors.green,
+              fontWeight: FontWeight.bold,
+            ),
+          )));
+    } else {
+      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+          backgroundColor: Colors.white,
+          content: Text(
+            'Please select a size',
+            textAlign: TextAlign.center,
+            style: TextStyle(
+              color: Colors.red,
+              fontWeight: FontWeight.bold,
+            ),
+          )));
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -35,6 +74,7 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
               image: AssetImage(
                 widget.product['imageUrl'] as String,
               ),
+              height: 250,
             ),
           ),
           const Spacer(flex: 1),
@@ -84,10 +124,10 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                 padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
                 child: ElevatedButton(
                   style: ElevatedButton.styleFrom(
-                    minimumSize: const Size(double.infinity, 50),
+                    fixedSize: const Size(350, 50),
                     backgroundColor: const Color.fromRGBO(254, 206, 1, 1),
                   ),
-                  onPressed: () {},
+                  onPressed: onTap,
                   child: const Text(
                     'Add To Cart',
                     style: TextStyle(
